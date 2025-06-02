@@ -1,4 +1,6 @@
-**BU DOSYAYI GITHUB ÜZERİNDEN OKUMAYINIZ, KILAVUZA BU ADRES ÜZERİNDEN ULAŞABİLİRSİNİZ: <https://guides.rubyonrails.org>.**
+**RESMİ KILAVUZA BU ADRES ÜZERİNDEN ULAŞABİLİRSİNİZ: <https://guides.rubyonrails.org>**
+
+--------------------------------------------------------------------------------
 
 Action Cable'a Genel Bakış
 =====================
@@ -12,8 +14,6 @@ Bu kılavuzu okuduktan sonra şunları bileceksiniz:
 * Action Cable'ı nasıl kuracağınızı
 * Kanalları (channels) nasıl kuracağınızı
 * Action Cable'ı çalıştırmak için dağıtım ve mimari kurulumunu
-
---------------------------------------------------------------------------------
 
 Action Cable Nedir? 
 ---------------------
@@ -46,7 +46,7 @@ Her bir tüketici sırayla birden fazla *kanala* abone olabilir. Her kanal, bir 
 
 ### Subscribers (Aboneler)
 
-Tüketici bir kanala abone olduğunda *abone* gibi davranır. Abone ile kanal arasındaki bağlantıya ise abonelik denir. Bir tüketici belirli bir kanala istediği kadar abone olabilir. Örneğin, bir tüketici birden fazla chat odasına aynı anda abone olabilir. (Fiziksel bir kullanıcının bağlantınıza her bir sekme veya açık cihaz için birden fazla tüketicisinin olabildiğini unutmayın.)
+Tüketici bir kanala abone olduğunda *abone* gibi davranır. Abone ile kanal arasındaki bağlantıya ise abonelik denir. Bir tüketici belirli bir kanala istediği kadar abone olabilir. Örneğin, bir tüketici birden fazla chat odasına aynı anda abone olabilir. (Fiziksel bir kullanıcının bağlantınıza açık olan her bir sekme veya cihaz için bir tane olmak üzere birden fazla tüketicisinin olabildiğini unutmayın.)
 
 ### Pub/Sub (Yayınla/Abone Ol)
 
@@ -136,7 +136,7 @@ end
 [`around_command`]: https://api.rubyonrails.org/classes/ActionCable/Connection/Callbacks/ClassMethods.html#method-i-around_command
 [`before_command`]: https://api.rubyonrails.org/classes/ActionCable/Connection/Callbacks/ClassMethods.html#method-i-before_command
 
-### Channels (Kanalalr)
+### Channels (Kanallar)
 
 Bir *kanal*, bir controllerın tipik bir MVC kurulumunda yaptığına benzer bir şekilde mantıksal bir iş birimini kapsar. Varsayılan olarak Rails, kanal oluşturucuyu (channel generator) ilk kez kullandığınızda, kanallarınız arasında paylaşılan mantığı kapsüllemek için bir ebeveyn sınıf olan `ApplicationCable::Channel` (ki bu sınıf `ActionCable::Channel::Base` sınıfını genişletir) oluşturur.
 
@@ -170,3 +170,4 @@ Bir tüketici, bu kanallardan birine veya her ikisine birden abone olabilir.
 
 #### Subscriptions (Abonelikler)
 
+Tüketiciler kanallara abone olarak "abone" durumuna gelirler. Bağlantılarına abonelik denir. Üretilen mesajlar daha sonra kanal tüketicisi tarafından gönderilen bir tanımlayıcıya göre bu kanal aboneliklerine yönlendirilir.
