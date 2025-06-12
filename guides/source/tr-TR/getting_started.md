@@ -1,6 +1,6 @@
 **RESMİ KILAVUZA BU ADRES ÜZERİNDEN ULAŞABİLİRSİNİZ: <https://guides.rubyonrails.org>**
 
---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
 
 Rails ile Başlarken
 ===================
@@ -21,7 +21,7 @@ Giriş
 
 Ruby on Rails'e hoş geldiniz! Bu kılavuzda, Rails ile web uygulamaları geliştirmenin temel konularını ele alacağız. Bu kılavuzu takip etmek için Rails'te herhangi bir deneyime ihtiyacınız yok.
 
-Rails, Ruby programlama dili için geliştirilmiş bi web çerçevesidir. Rails, Ruby'nin birçok özelliğinin avantajını barındırmaktadır, bu yüzden sizlere Ruby'nin temellerini öğrenmenizi *şiddetle* öneririz. Böylece bu kılavuzda karşılacağınız bazı temel terimleri ve kelimeleri anlıyor olacaksınız.
+Rails, Ruby programlama dili için geliştirilmiş bir web framework'üdür. Rails, Ruby'nin birçok özelliğinin avantajını barındırmaktadır, bu yüzden sizlere Ruby'nin temellerini öğrenmenizi *şiddetle* öneririz. Böylece bu kılavuzda karşılacağınız bazı temel terimleri ve kelimeleri anlıyor olacaksınız.
 
 - [Resmi Ruby Websitesi](https://www.ruby-lang.org/en/documentation/)
 - [Ücretsiz Programlama Kitaplarını İçeren Liste](https://github.com/EbookFoundation/free-programming-books/blob/main/books/free-programming-books-langs.md#ruby)
@@ -29,7 +29,7 @@ Rails, Ruby programlama dili için geliştirilmiş bi web çerçevesidir. Rails,
 Rails'in Felsefesi
 ------------------
 
-Rails, Ruby programlama dilinde yazılmış bir web uygulaması geliştirme çerçevesidir. Her geliştiricinin başlangıç için ihtiyaç duyduğu şeyleri varsayarak web uygulamalarını programlamayı kolaylaştırmak için tasarlanmıştır. Diğer birçok dil ve çerçeveye göre daha az kod yazarak daha fazlasını başarmanızı sağlar. Deneyimli Rails geliştiricileri, web uygulaması geliştirmeyi daha eğlenceli hale getirdiğini de belirtmektedir.
+Rails, Ruby programlama dilinde yazılmış bir web uygulaması geliştirme framework'üdür. Her geliştiricinin başlangıç için ihtiyaç duyduğu şeyleri varsayarak web uygulamalarını programlamayı kolaylaştırmak için tasarlanmıştır. Diğer birçok dil ve framework'e göre daha az kod yazarak daha fazlasını başarmanızı sağlar. Deneyimli Rails geliştiricileri, web uygulaması geliştirmeyi daha eğlenceli hale getirdiğini de belirtmektedir.
 
 Rails, inatçı bir yazılımdır. İşleri yapmanın “en iyi” bir yolu olduğu varsayımından hareket eder ve bu yolu teşvik etmek için tasarlanmıştır - ve bazı durumlarda alternatiflerden caydırır. “Rails Yöntemi”ni öğrenirseniz, muhtemelen üretkenliğinizde muazzam bir artış göreceksiniz. Diğer dillerden edindiğiniz eski alışkanlıkları Rails geliştirirken ısrarla sürdürür ve başka yerlerde öğrendiğiniz kalıpları kullanmaya çalışırsanız, daha az mutlu bir deneyim yaşayabilirsiniz.
 
@@ -667,11 +667,11 @@ Bir kaynak için genellikle ihtiyaç duyacağınız 4 yaygın eylem vardır: Cre
 
 * Index - Tüm kayıtları gösterir
 * New - Yeni bir kayıt oluşturmak için bir form oluşturur
-* Create - Yeni form gönderimini işler, hataları işler ve kaydı oluşturur
+* Create - Yeni form gönderimini işler, hataları ele alır ve kaydı oluşturur
 * Show - Spesifik bir kaydı görüntülemek için işler
 * Edit - Spesifik bir kaydı güncellemek için bir formu işler
-* Update (full - tam) - Edit formu gönderimini yönetir, hataları işler ve tüm kaydı günceller ve genellikle bir PUT isteği tarafından tetiklenir.
-* Update (partial - kısmi) - Edit formu gönderimini yönetir, hataları işler ve kaydın belirli özniteliklerini günceller ve genellikle bir PATCH isteği tarafından tetiklenir.
+* Update (full - tam) - Edit formu gönderimini yönetir, hataları ele alır ve tüm kaydı günceller ve genellikle bir PUT isteği tarafından tetiklenir.
+* Update (partial - kısmi) - Edit formu gönderimini yönetir, hataları ele alır ve kaydın belirli özniteliklerini günceller ve genellikle bir PATCH isteği tarafından tetiklenir.
 * Destroy - Spesifik bir kaydı silmeyi yönetir
 
 Bu CRUD eylemleri için aşağıdaki şekilde route'lar ekleyebiliriz:
@@ -1068,7 +1068,7 @@ end
 
 `product_params`'ta Rails'e, params'ı incelemesini ve değer olarak bir parametre array'i ile `:product` adında bir anahtar (key) olduğundan emin olmasını söylüyoruz. Products için izin verilen tek parametre `:name`'dir ve Rails diğer tüm parametreleri yok sayacaktır. Bu, uygulamamızı hack'lemeye çalışabilecek kötü niyetli kullanıcılardan korur.
 
-#### Hataları İşleme
+#### Hata Yönetimi
 
 Bu params'ları yeni `Product`'a atadıktan sonra, onu veritabanına kaydetmeyi deneyebiliriz. `@product.save` Active Record'a doğrulamaları çalıştırmasını ve kaydı veritabanına kaydetmesini söyler.
 
@@ -1975,14 +1975,7 @@ Active Record, özniteliklerdeki değişiklikleri takip eder, bu yüzden `back_i
 
 ### Bir Concern Çıkarma
 
-Product modeli artık bildirimleri işlemek için makul miktarda koda sahip. Kodumuzu daha iyi organize etmek için bunu bir `ActiveSupport::Concern`'e çıkarabiliriz. Bir Concern, bunları kullanmayı kolaylaştırmak için bazı syntactic sugar içeren bir Ruby modülüdür. 
-
-<div class="guide-alert guide-alert-info">
-  <div class="guide-alert-icon">💡</div>
-  <div class="guide-alert-content">
-    Syntactic sugar; bir programlama dilinde belirli işlevleri daha okunabilir ve kullanıcı dostu hale getirmek için eklenen sözdizimi öğeleridir.
-  </div>
-</div>
+Product modeli artık bildirimleri işlemek için makul miktarda koda sahip. Kodumuzu daha iyi organize etmek için bunu bir `ActiveSupport::Concern`'e çıkarabiliriz. Bir Concern, bunları kullanmayı kolaylaştırmak için bazı syntactic sugar içeren bir Ruby modülüdür. (Not: Syntactic sugar; bir programlama dilinde belirli işlevleri daha okunabilir ve kullanıcı dostu hale getirmek için eklenen sözdizimi öğeleridir.)
 
 İlk olarak Notifications modülünü oluşturalım.
 
@@ -2522,7 +2515,7 @@ Sırada Ne Var?
 Ayrıca diğer Ruby on Rails Kılavuzlarını okuyarak daha fazlasını öğrenmenizi öneririz:
 
 * [Active Record Temelleri](../active_record_basics/)
-* [Rails'te Düzenler ve Render Etme](../layouts_and_rendering/)
+* [Rails'te Layout ve Render](../layouts_and_rendering/)
 * [Rails Uygulamalarını Test Etme](../testing/)
 * [Rails Uygulamalarında Hata Ayıklama](../debugging_rails_applications/)
 * [Rails Uygulamalarının Güvenliği](../security/)
