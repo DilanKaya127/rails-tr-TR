@@ -1217,7 +1217,7 @@ Yeni ürün oluşturmak için zaten bir form yazdık. Bunu edit ve update için 
 
 Formu `app/views/products/_form.html.erb` adlı bir dosyaya taşıyabiliriz. Dosya adı bunun bir partial olduğunu belirtmek için alt çizgi ile başlar.
 
-Ayrıca herhangi bir instance variable'ı, partial'ı render ettiğimizde tanımlayabileceğimiz bir local variable (yerel değişken) ile değiştirmek istiyoruz. Bunu `@product`'ı `product` ile değiştirerek yapacağız.
+Ayrıca herhangi bir instance variable'ı (örnek değişken), partial'ı render ettiğimizde tanımlayabileceğimiz bir local variable (yerel değişken) ile değiştirmek istiyoruz. Bunu `@product`'ı `product` ile değiştirerek yapacağız.
 
 ```erb#1
 <%= form_with model: product do |form| %>
@@ -1235,7 +1235,7 @@ Ayrıca herhangi bir instance variable'ı, partial'ı render ettiğimizde tanım
 <div class="guide-alert guide-alert-info">
   <div class="guide-alert-icon">💡</div>
   <div class="guide-alert-content">
-    Local variable'lar kullanmak partial'ların aynı sayfada her seferinde farklı bir değerle birden fazla kez yeniden kullanılmasına olanak tanır. Bu, index sayfası gibi öğe listelerini render ederken işe yarar.
+    Local variable'lar kullanmak, partial'ların aynı sayfada her seferinde farklı bir değerle birden fazla kez yeniden kullanılmasına olanak tanır. Bu, index sayfası gibi öğe listelerini render ederken işe yarar.
   </div>
 </div>
 
