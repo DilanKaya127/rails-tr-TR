@@ -183,6 +183,15 @@ class DebugExceptionsTest < ActionDispatch::IntegrationTest
     assert boomer.closed, "Expected to close the response body"
   end
 
+  test "returns empty body on HEAD cascade pass" do
+    @app = DevelopmentApp
+
+    head "/pass"
+
+    assert_response 404
+    assert_equal "", body
+  end
+
   test "displays routes in a table when a RoutingError occurs" do
     @app = DevelopmentApp
     get "/pass", headers: { "action_dispatch.show_exceptions" => :all }
@@ -856,6 +865,16 @@ class DebugExceptionsTest < ActionDispatch::IntegrationTest
       assert_select "#Application-Trace-2" do
         assert_select "code a:first", %r{in [`'].*raise_nested_exceptions_first'}
       end
+    end
+  end
+
+  test "shows the link to edit the file in the editor" do
+    @app = DevelopmentApp
+    ActiveSupport::Editor.stub(:current, ActiveSupport::Editor.find("atom")) do
+      get "/actionable_error"
+
+      assert_select "code a.edit-icon"
+      assert_includes body, "atom://core/open"
     end
   end
 
