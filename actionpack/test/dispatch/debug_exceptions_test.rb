@@ -86,8 +86,6 @@ class DebugExceptionsTest < ActionDispatch::IntegrationTest
         raise ActionController::UnknownHttpMethod
       when "/not_implemented"
         raise ActionController::NotImplemented
-      when "/unprocessable_entity"
-        raise ActionController::InvalidAuthenticityToken
       when "/invalid_mimetype"
         raise ActionDispatch::Http::MimeNegotiation::InvalidType
       when "/not_found_original_exception"
@@ -404,7 +402,7 @@ class DebugExceptionsTest < ActionDispatch::IntegrationTest
       "action_dispatch.parameter_filter" => [:foo] }
     assert_response 500
 
-    assert_match(CGI.escape_html({ "foo" => "[FILTERED]" }.inspect[1..-2]), body)
+    assert_match(ERB::Util.html_escape({ "foo" => "[FILTERED]" }.inspect[1..-2]), body)
   end
 
   test "show registered original exception if the last exception is TemplateError" do
@@ -468,7 +466,7 @@ class DebugExceptionsTest < ActionDispatch::IntegrationTest
     })
     assert_response 500
 
-    assert_includes(body, CGI.escapeHTML(PP.pp(params, +"", 200)))
+    assert_includes(body, ERB::Util.html_escape(PP.pp(params, +"", 200)))
   end
 
   test "sets the HTTP charset parameter" do
